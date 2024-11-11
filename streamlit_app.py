@@ -13,12 +13,15 @@ from datetime import date, datetime, timedelta
 
 # --- SIDEBAR CODE
 def get_allsymbols():
-    url = "https://caddd-index2.vercel.app/allsymbols"
+    url = "https://caddd-index2.vercel.app/top.json?t=" + str(60*60*8)
     headers = {"Content-Type": "application/json"}
     response = requests.get(url)
     json_object = response.json()
-    return json_object
-    
+    json_object1 = []
+    for char in json_object:
+        json_object1.append(char['symbol'])
+    return json_object1
+
 def get_symbol_log(symbol):
     url = "https://caddd-index2.vercel.app/symbol_log_data?t="+symbol
     headers = {"Content-Type": "application/json"}
